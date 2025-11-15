@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "eslint src tests",
-    "test": "jest --coverage",
+    "test": "jest --coverage --coverageThreshold '{\"global\": {\"branches\": 50, \"functions\": 50, \"lines\": 50, \"statements\": 50}}'",
     "build": "echo 'Build success!'"
   },
   "repository": {
@@ -20,6 +20,28 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.57.1",
-    "jest": "^30.2.0"
+    "jest": "^30.2.0",
+    "jest-junit": "^16.0.0"
+  },
+  "jest": {
+    "coverageDirectory": "coverage",
+    "reporters": [
+      "default",
+      [
+        "jest-junit",
+        {
+          "outputDirectory": "./coverage",
+          "outputName": "junit.xml"
+        }
+      ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    }
   }
 }
